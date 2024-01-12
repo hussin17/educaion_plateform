@@ -19,20 +19,21 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-// Routes For Admins
-Route::prefix('admin')->name('admin.')->group(function () {
+// Routes For Students
+Route::prefix('student')->name('admin.')->group(function () {
     // Dashboard For Admins
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::middleware('auth')->group(function () {
+
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-    require __DIR__ . '/auth.php';
+    require __DIR__ . '/student.php';
 });
 
 // Routes For Instractors
@@ -51,19 +52,18 @@ Route::prefix('instractors')->name('admin.')->group(function () {
     require __DIR__ . '/instractor.php';
 });
 
-// Routes For Students
-Route::prefix('student')->name('admin.')->group(function () {
+// Routes For Admins
+Route::prefix('admin')->name('admin.')->group(function () {
     // Dashboard For Admins
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->middleware(['auth', 'verified'])->name('dashboard');
 
     Route::middleware('auth')->group(function () {
-
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
         Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-    require __DIR__ . '/student.php';
+    require __DIR__ . '/auth.php';
 });
