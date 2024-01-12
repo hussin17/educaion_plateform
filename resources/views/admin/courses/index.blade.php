@@ -1,8 +1,13 @@
 <x-app-layout>
     <x-slot name="header">
-        <h2 class="text-xl font-semibold leading-tight text-gray-800">
-            {{ __('Courses') }}
-        </h2>
+        <div class="d-flex justify-content-lg-between">
+            <h2 class="text-xl font-semibold leading-tight text-gray-800 d-inline-block">
+                {{ __('Courses') }}
+            </h2>
+            <a href="{{ route('admin.courses.create') }}" class="btn btn-primary">
+                {{ __('Add Course') }}
+            </a>
+        </div>
     </x-slot>
 
     <div class="py-12">
@@ -21,7 +26,8 @@
                                 <th class="text-danger">{{ __('instractor') }}</th>
                                 <th class="text-danger">{{ __('price') }}</th>
                                 <th class="text-danger">{{ __('discount') }}</th>
-                                <th class="text-danger">{{ __('start - end') }}</th>
+                                <th class="text-danger" width="100">{{ __('start') }}</th>
+                                <th class="text-danger" width="100">{{ __('end') }}</th>
                                 <th class="text-danger">{{ __('hours') }}</th>
                             </tr>
                         </thead>
@@ -30,293 +36,21 @@
                                 <tr>
                                     <td>{{ $key + 1 }}</td>
                                     <td>
-                                        <img src='{{ asset("/images/ $item->image") }}' width="100" alt="">
+                                        <img src="{{ asset('/images/' . $item->image) }}" width="150"
+                                            alt="">
                                     </td>
                                     <td>{{ $item->name }}</td>
-                                    <td>{{ $item->description }}</td>
+                                    <td>{{ Str::limit($item->description, 150, '...') }}</td>
                                     <td>{{ $item->category->name }}</td>
                                     <td>{{ $item->major->name }}</td>
                                     <td>{{ $item->instractor->name }}</td>
                                     <td>{{ $item->price }}</td>
                                     <td>{{ $item->discount }}</td>
-                                    <td>{{ $item->start }} - {{ $item->end }}</td>
+                                    <td>{{ date('d-m-y', strtotime($item->start)) }} </td>
+                                    <td>{{ date('d-m-y', strtotime($item->end)) }} </td>
                                     <td>{{ $item->hours }}
                                 </tr>
                             @endforeach
-
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
-                            <tr>
-                                <td>#</td>
-                                <td>{{ __('image') }}</td>
-                                <td>{{ __('name') }}</td>
-                                <td>{{ __('description') }}</td>
-                                <td>{{ __('category') }}</td>
-                                <td>{{ __('major') }}</td>
-                                <td>{{ __('instdactor') }}</td>
-                                <td>{{ __('price') }}</td>
-                                <td>{{ __('discount') }}</td>
-                                <td>{{ __('start - end') }}</td>
-                                <td>{{ __('hours') }}
-                            </tr>
                         </tbody>
                     </table>
                 </div>

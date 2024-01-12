@@ -31,9 +31,12 @@ class CreateCoursesTable extends Migration
             $table->dateTime('start');
             $table->dateTime('end');
             $table->integer('hours');
+
             $table->foreign('cat_id')->references('id')->on('categories');
             $table->foreign('major_id')->references('id')->on('majors');
             $table->foreign('instractor_id')->references('id')->on('instractors');
+            $table->foreign('level_id')->references('id')->on('levels');
+
             $table->dateTime('date_added');
         });
 

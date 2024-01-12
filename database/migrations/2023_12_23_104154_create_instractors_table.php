@@ -23,7 +23,7 @@ class CreateInstractorsTable extends Migration
             $table->string('email');
             $table->string('phone1');
             $table->bigInteger('phone2')->nullable();
-            $table->integer('address');
+            $table->text('address');
             $table->text('informations');
             $table->integer('experience');
 
